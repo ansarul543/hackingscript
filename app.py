@@ -5,8 +5,7 @@ from PyQt5.QtCore import QTimer,QTime,Qt,QDate,QSize
 from PyQt5 import uic,QtGui,QtCore,QtSql
 import blocksmith
 from keygen import *
-
-print("Okkk")
+from addressgen import CryptoWallet
 
 nonce=0
 while False:
@@ -116,6 +115,64 @@ class MainWin(QWidget):
         uic.loadUi('./main.ui', self)
         self.setWindowTitle("Cryptocurrency Decrypt Tools")
         self.setWindowIcon(QtGui.QIcon("./icon.png"))
+        self.newaddressbtn.clicked.connect(self.NewAddress)
+        self.signbtn.clicked.connect(self.SignAddress)
+        self.hackstartbtn.clicked.connect(self.HakingStart)
+        self.reset1.clicked.connect(self.ResetNew)
+        self.reset.clicked.connect(self.ResetHack)
+
+
+    def HakingStart(self):
+        self.privatekey.setText("Private Key")
+        self.publickey.setText("Public Key")
+        self.address.setText("Address Key")
+        self.status.setText("True")
+
+    def SignAddress(self):
+        privatekey1 = self.privatekey1.text()
+        try:
+            address = CryptoWallet.generate_address(privatekey1)
+            checksum = CryptoWallet.checksum_address(address)
+            public = CryptoWallet.publickeyval(privatekey1).decode()
+            self.publickey1.setText(public)
+            self.address1.setText(checksum)
+            self.status1.setText("True")         
+        except:
+            #print("Invalid Private Key")
+            self.status1.setText("False") 
+            QMessageBox.warning(None, ("Error"), 
+            ("Invalid Private Key Try Again"),
+             QMessageBox.Ok)
+
+    def NewAddress(self):
+        kg = KeyGenerator()
+        kg.seed_input('')
+        key = kg.generate_key()
+        address = CryptoWallet.generate_address(key)
+        checksum = CryptoWallet.checksum_address(address)
+        public = CryptoWallet.publickeyval(key).decode()
+        """print([{"privateKey":key,
+                 "publickey":public,
+                 "address":address,
+                 "check_sum":checksum
+                 }])"""
+        self.privatekey1.setText(key)
+        self.publickey1.setText(public)
+        self.address1.setText(checksum)
+        self.status1.setText("True")
+
+    def ResetHack(self):
+        self.privatekey.setText("")
+        self.publickey.setText("")
+        self.address.setText("")
+        self.status.setText("")
+
+    def ResetNew(self):
+        self.privatekey1.setText("")
+        self.publickey1.setText("")
+        self.address1.setText("")
+        self.status1.setText("")
+
 
 
 if __name__=="__main__":

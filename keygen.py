@@ -56,3 +56,4 @@ class KeyGenerator:
         big_int = random.getrandbits(self.KEY_BYTES * 8)
         self.prng_state = random.getstate()
         return big_int
+
