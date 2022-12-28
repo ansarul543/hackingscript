@@ -110,7 +110,7 @@ while False:
         break     
 
 class MainWin(QWidget):
-    def __init__(self,id='',lid='',type='',parent=None):
+    def __init__(self,parent=None):
         super().__init__()
         uic.loadUi('./main.ui', self)
         self.setWindowTitle("Cryptocurrency Decrypt Tools")
