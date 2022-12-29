@@ -19,6 +19,9 @@ class MainWin(QWidget):
     def equalB(self):
         base = self.base.text()
         quote = self.quote.text()
+        #d = int("F83a27eDEFe74E6A1aA936f18D0c03f8CA4Fa91A", base=16) // hexadicimal to decimal
+        #print(d)
+        #hex(int(888)) // Decimal to hexadecimal f'{int(totalmul):x}'
         if base=="":
             QMessageBox.warning(None, ("Error"), 
             ("Base Number empty"),
@@ -36,22 +39,32 @@ class MainWin(QWidget):
                 totaladd = float(base)+float(quote)
                 self.output.setText(f'{totaladd:.8f}')
                 self.symbol.setText("Output +")
-                print(f'{totaladd:.8f}')
+                #print(f'{totaladd:.8f}')
             if self.quoated=="-":
                 totalsub = float(base)-float(quote)
                 self.output.setText(f'{totalsub:.8f}')
                 self.symbol.setText("Output -")
-                print(f'{totalsub:.8f}')
+                #print(f'{totalsub:.8f}')
             if self.quoated=="*":
                 totalmul = float(base)*float(quote)
                 self.output.setText(f'{totalmul:.8f}')
                 self.symbol.setText("Output *")
-                print(f'{totalmul:.8f}')
+                print("Address :")
+                print(base)
+                print(f'{int(base):x}')
+                print("Public Key :")
+                print(f'{totalmul:.0f}')
+                print(f'{int(totalmul):x}')
+                print("Private Key :")
+                getprivate = totalmul/100000000000000000000000000000000000000000000000000000000000000000000000000000
+                print(f'{getprivate:.0f}')
+                print(f'{int(getprivate):x}')
+                #print(f'{totalmul:.8f}')
             if self.quoated=="/":
                 totaldiv = float(base)/float(quote)
                 self.output.setText(f'{totaldiv:.8f}')
                 self.symbol.setText("Output /")
-                print(f'{totaldiv:.8f}')
+
 
     def plusB(self):
         self.quoated="+"    
