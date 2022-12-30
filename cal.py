@@ -51,7 +51,7 @@ class MainWin(QWidget):
                 self.symbol.setText("Output *")
                 print("Address :")
                 print(base)
-                print(f'{int(base):x}')
+                print(f'{int(base):x}'.upper()) #.lower()
                 print("Public Key :")
                 print(f'{totalmul:.0f}')
                 print(f'{int(totalmul):x}')
@@ -60,6 +60,7 @@ class MainWin(QWidget):
                 print(f'{getprivate:.0f}')
                 print(f'{int(getprivate):x}')
                 #print(f'{totalmul:.8f}')
+                print("..............................Line Break..............................")
             if self.quoated=="/":
                 totaldiv = float(base)/float(quote)
                 self.output.setText(f'{totaldiv:.8f}')
