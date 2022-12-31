@@ -6,6 +6,7 @@ from PyQt5 import uic,QtGui,QtCore,QtSql
 import blocksmith
 from keygen import *
 from addressgen import CryptoWallet
+import pymongo
 
 class MainWin(QWidget):
     def __init__(self,parent=None):
@@ -18,14 +19,22 @@ class MainWin(QWidget):
         self.hackstartbtn.clicked.connect(self.HakingStart)
         self.reset1.clicked.connect(self.ResetNew)
         self.reset.clicked.connect(self.ResetHack)
+        self.myclient = pymongo.MongoClient('mongodb://localhost:27017/')
+        self.db = self.myclient['addressbook']
+        self.addresstable = self.db["addresstable"]
 
 
     def HakingStart(self):
         inputadd = self.inputaddress.text()
-        fromn = 11000000000000000000000000000000000000000000000000000000000000000000000043859
+        fromn = 11000000000000000000000000000000000000000000000000000000000000000000000401131
         endnum = 99999999999999999999999999999999999999999999999999999999999999999999999999999
         nonce =0
-        decimal = 11000000000000000000000000000000000000000000000000000000000000000000000043859
+        decimal = 11000000000000000000000000000000000000000000000000000000000000000000000401131
+        lastdecimal = self.addresstable.find().sort("_id", -1).limit(1)
+        for x in lastdecimal:
+            fromn = int(x["decimal"])
+            decimal = int(x["decimal"])
+            #print(x["decimal"])
         if (inputadd !=""):
             for i in range(fromn,endnum):
                 nonce+=1
@@ -45,12 +54,21 @@ class MainWin(QWidget):
                 self.publickey.setText(publickey.decode("utf-8"))
                 self.address.setText(newadd)
                 self.status.setText("False")
+
+                data = {"decimal":str(decimal),"private_key":key.lower(),"address":newadd.lower(),"status":"Failed"}
+                data1 = {"decimal":str(decimal),"private_key":key.lower(),"address":newadd.lower(),"status":"Success"}
+                ent = self.addresstable.find_one({"decimal":str(decimal)})
+                
                 if(inputadd.lower()==newadd.lower()):
                     self.privatekey.setText(key)
                     self.publickey.setText(publickey.decode("utf-8"))
                     self.address.setText(newadd)
                     self.status.setText("True")
+                    self.addresstable.insert_one(data1)
                     break
+                else:
+                    if ent==None:
+                        self.addresstable.insert_one(data)  
         else:
             QMessageBox.warning(None, ("Error"), 
             ("Input address is required"),
