@@ -41,7 +41,7 @@ class MainWin(QWidget):
                 decimal+=1
                 key = f'{int(decimal):x}'
                 newadd = CryptoWallet.generate_address(key)
-                publickey = CryptoWallet.publickeyval(key)
+                #publickey = CryptoWallet.publickeyval(key)
                 
                 print("Private Key : ",key)
                 print("Nonce : ",nonce)
@@ -51,13 +51,13 @@ class MainWin(QWidget):
                 
                 print("................................New Line.............................")
                 self.privatekey.setText(key)
-                self.publickey.setText(publickey.decode("utf-8"))
+                #self.publickey.setText(publickey.decode("utf-8"))
                 self.address.setText(newadd)
                 self.status.setText("False")
 
                 data = {"decimal":str(decimal),"private_key":key.lower(),"address":newadd.lower(),"status":"Failed"}
                 data1 = {"decimal":str(decimal),"private_key":key.lower(),"address":newadd.lower(),"status":"Success"}
-                ent = self.addresstable.find_one({"decimal":str(decimal)})
+                #ent = self.addresstable.find_one({"decimal":str(decimal)})
                 
                 if(inputadd.lower()==newadd.lower()):
                     self.privatekey.setText(key)
@@ -67,7 +67,7 @@ class MainWin(QWidget):
                     self.addresstable.insert_one(data1)
                     break
                 else:
-                    if ent==None:
+                    #if ent==None:
                         self.addresstable.insert_one(data)  
         else:
             QMessageBox.warning(None, ("Error"), 
