@@ -46,6 +46,10 @@ class CryptoWallet:
         keccak_hash = keccak.new(digest_bits=256)
         keccak_hash.update(public_key_bytes)
         keccak_digest = keccak_hash.hexdigest()
+        print("Keccak Digest Address")
+        print(keccak_digest)
+        print(int(keccak_digest, base=16))
+        print("")
         # Take last 20 bytes
         wallet_len = 40
         wallet = '0x' + keccak_digest[-wallet_len:]

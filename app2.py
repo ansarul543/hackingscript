@@ -97,6 +97,7 @@ class MainWin(QWidget):
         address = CryptoWallet.generate_address(key)
         checksum = CryptoWallet.checksum_address(address)
         public = CryptoWallet.publickeyval(key).decode()
+
         print("Private Key :")
         print(key)
         print(int(key, base=16))
