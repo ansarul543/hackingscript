@@ -75,6 +75,15 @@ class MainWin(QWidget):
              QMessageBox.Ok)
 
     def SignAddress(self):
+        f = open("bnb.txt",mode="r")
+        address=[]
+        for line in f:
+            address.append(line[0:42].lower())
+            #print(line)
+        f.close() 
+        #print(address)   
+        for ars in address:
+            print(ars)
         privatekey1 = self.privatekey1.text()
         try:
             address = CryptoWallet.generate_address(privatekey1)
@@ -82,7 +91,20 @@ class MainWin(QWidget):
             public = CryptoWallet.publickeyval(privatekey1).decode()
             self.publickey1.setText(public)
             self.address1.setText(checksum)
-            self.status1.setText("True")         
+            self.status1.setText("True")      
+            print("Private Key :")
+            print(privatekey1)
+            print(int(privatekey1, base=16))
+            print("")
+            print("Public Key :")
+            print(public)
+            print(int(public, base=16))
+            print("")
+            print("Address :")
+            print(address)
+            print(int(address, base=16))
+            print("")       
+            print("......................................Line Break..................................")        
         except:
             #print("Invalid Private Key")
             self.status1.setText("False") 
