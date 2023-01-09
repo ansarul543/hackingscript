@@ -75,15 +75,6 @@ class MainWin(QWidget):
              QMessageBox.Ok)
 
     def SignAddress(self):
-        f = open("bnb.txt",mode="r")
-        address=[]
-        for line in f:
-            address.append(line[0:42].lower())
-            #print(line)
-        f.close() 
-        #print(address)   
-        for ars in address:
-            print(ars)
         privatekey1 = self.privatekey1.text()
         try:
             address = CryptoWallet.generate_address(privatekey1)

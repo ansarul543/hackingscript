@@ -1,0 +1,23 @@
+{
+  "name": "python",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ansarul543/hackingscript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ansarul543/hackingscript/issues"
+  },
+  "homepage": "https://github.com/ansarul543/hackingscript#readme",
+  "dependencies": {
+    "mongodb": "^4.13.0",
+    "mysql": "^2.18.1"
+  }
+}
