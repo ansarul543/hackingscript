@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/ansarul543/hackingscript#readme",
   "dependencies": {
+    "ethers": "^5.7.2",
+    "hex2dec": "^1.1.2",
     "mongodb": "^4.13.0",
     "mysql": "^2.18.1"
   }
