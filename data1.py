@@ -72,16 +72,21 @@ except:
   print("Mongodb error")
 
 print("Searching...")
+
+def filterData(address):
+  for x in alldata:
+    if(x[1].lower()==address.lower()):
+      return True
+    else:
+      False  
+
 for d in data:
     ab+=1
-    print("Nonce : ",ab)
-    count=0
-    for x in alldata:
-      count+=1
-      if(x[1].lower()==d["address"].lower()):
+    if(filterData(d["address"])==True):
         break
-    addresstable.delete_one({"address": d["address"]})  
-    print("Address Count : ",count)
+    else:  
+      addresstable.delete_one({"address": d["address"]})  
+    print("Nonce : ",ab)
      
 
 """
