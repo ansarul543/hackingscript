@@ -52,9 +52,15 @@ for ars in address:
       print("Inserted")
 
 """
+print("MySql Address Querying...")
+sqldata = []
+mycursor.execute("SELECT * FROM address")
+alldata = mycursor.fetchall()
+sqldata=alldata
 
+print("Mongodb Address Querying...")
 data = []
-doc = addresstable.find().limit(1000000)
+doc = addresstable.find().sort("_id",-1).limit(1000000)
 ab =0
 try:
   for m in doc:
@@ -68,16 +74,15 @@ except:
 print("Searching...")
 for d in data:
     ab+=1
-    print(ab)
-    #print(m["address"])
-    mycursor.execute("SELECT * FROM address WHERE address = %s", (d["address"], ))
-    myresult = mycursor.fetchone()
-    if (myresult!=None):
-      print(m)
-      print(myresult)
-      break
-    else:
-      addresstable.delete_one({"address": d["address"]})
+    print("Nonce : ",ab)
+    count=0
+    for x in alldata:
+      count+=1
+      if(x[1].lower()==d["address"].lower()):
+        break
+    addresstable.delete_one({"address": d["address"]})  
+    print("Address Count : ",count)
+     
 
 """
 print(len(data))
