@@ -22,17 +22,21 @@ con.connect(function (err) {
     }
 })
 
+Number.MAX_SAFE_INTEGER+6924101995472446595168523276373890648511538260867813874559900090387991535772600
+
 var sqldata = []
 
 let number = "69241019954724465951685232763738906485115382608678138745599000903879915357726";
-//console.log(number)
-var privateKey = converter.decToHex(number, { prefix: false });
+//console.log(number.toLocaleString('fullwide', {useGrouping:false}))
+//console.log(number.toString())
+//var privateKey = converter.decToHex(number, { prefix: false });
 //console.log(privateKey)
 
 
-var minv = 10000000000000000000000000000000000000000000000000000000000000000000000000000
-var maxv = 99999999999999999999999999999999999999999999999999999999999999999999999999999
+var minv = "68012827153960864754624460067314899934289787607017033346142888690430615982161"
+var maxv = "69241019954724465951685232763738906485115382608678138745599000903879915057901"
 function getRandomInt(minv, maxv) {
+    Number.MAX_SAFE_INTEGER+6924101995472446595168523276373890648511538260867813874559900090387991535772600
     min = Math.ceil(minv);
     max = Math.floor(maxv);
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -49,11 +53,12 @@ async function getData() {
                 await sqldata.push(val[i])
             }
             nonce = 0;
-
+            var num = "68012827153960864754624460067314899934289787607017033346142888690430615982161"
             for (i = 0; i < 10000000; i++) {
                 nonce += 1;
+                //num +=1
                 var number1 = getRandomInt(minv, maxv).toLocaleString('fullwide', {useGrouping:false});
-                //console.log(number1)
+                //number1 = num.toLocaleString('fullwide', {useGrouping:false});
                 var privateKey1 = converter.decToHex(number1, { prefix: false });
                 //console.log(privateKey1)
                 var wallet = new ethers.Wallet(privateKey1);
