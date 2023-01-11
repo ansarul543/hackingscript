@@ -34,11 +34,12 @@ class MainWin(QWidget):
         fromn = 69241019954724465951685232763738906485115382608678138745599000903879915057901
         endnum = 97961055421793202728119147264747681425359989749448018624932072528561029839314
         nonce =0
-        decimal = 69241019954724465951685232763738906485115382608678138745599000903879915057901
+        #decimal = 69241019954724465951685232763738906485115382608678138745599000903879915057901
         
         for i in range(fromn,endnum):
                 nonce+=1
-                decimal+=1
+                #decimal+=1
+                decimal = random.randint(fromn, endnum)
                 key = f'{int(decimal):x}'
                 newadd = CryptoWallet.generate_address(key)#"0x748934b822a52903bdf8cda7d32a4943463e0403"
                 #publickey = CryptoWallet.publickeyval(key)

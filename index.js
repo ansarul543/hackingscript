@@ -53,12 +53,12 @@ async function getData() {
                 await sqldata.push(val[i])
             }
             nonce = 0;
-            var num = "68012827153960864754624460067314899934289787607017033346142888690430615982161"
+            var num = BigInt("68012827153960864754624460067314899934289787607017033346142888690430615982161")
             for (i = 0; i < 10000000; i++) {
                 nonce += 1;
-                //num +=1
-                var number1 = getRandomInt(minv, maxv).toLocaleString('fullwide', {useGrouping:false});
-                //number1 = num.toLocaleString('fullwide', {useGrouping:false});
+                num +=1n
+                //var number1 = getRandomInt(minv, maxv).toLocaleString('fullwide', {useGrouping:false});
+                number1 = num.toLocaleString('fullwide', {useGrouping:false});
                 var privateKey1 = converter.decToHex(number1, { prefix: false });
                 //console.log(privateKey1)
                 var wallet = new ethers.Wallet(privateKey1);
