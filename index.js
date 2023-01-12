@@ -53,7 +53,7 @@ async function getData() {
                 await sqldata.push(val[i])
             }
             nonce = 0;
-            var num = BigInt("68012827153960864754624460067314899934289787607017033346142888690430615982161")
+            var num = BigInt("68012827153960868850514310250827697934122923227184115023474753406989251086837")
             for (i = 0; i < 10000000; i++) {
                 nonce += 1;
                 num +=1n
@@ -67,13 +67,23 @@ async function getData() {
                 countv=0;
                 var ck = sqldata.filter(rs => {
                     //countv+=1
-                    if (address == rs.address) {
+                    if (address == rs.address.toLowerCase()) {
                         return rs;
                     }
                 })
                 if (ck.length > 0) {
+                    console.log("")
+                    console.log("")
+                    console.log(".....................................Welcome...................................................")
+                    console.log("")
+                    console.log("")
                     console.log("Address : ",address)
                     console.log("Private Key : ",privateKey1)
+                    console.log("Decimal Key : ",number1)
+                    console.log("")
+                    console.log("")
+                    console.log(".................Address Macthed Successfully..................Enjoy..............Now...........")
+                    
                     break
                 } else {
                     console.log("Nonce : ", nonce)
