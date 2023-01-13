@@ -33,13 +33,12 @@ let number = "692410199547244659516852327637389064851153826086781387455990009038
 //console.log(privateKey)
 
 
-var minv = "68012827153960864754624460067314899934289787607017033346142888690430615982161"
-var maxv = "69241019954724465951685232763738906485115382608678138745599000903879915057901"
-function getRandomInt(minv, maxv) {
-    Number.MAX_SAFE_INTEGER+6924101995472446595168523276373890648511538260867813874559900090387991535772600
-    min = Math.ceil(minv);
-    max = Math.floor(maxv);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+var minv = "18012827153960864754624460067314899934289787607017033346142888690430615982161"
+var maxv = "79241019954724465951685232763738906485115382608678138745599000903879915057901"
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return BigInt(Math.floor(Math.random()* (max - min + 1))  + min);
 }
 //console.log(getRandomInt(minv, maxv))
 
@@ -53,12 +52,12 @@ async function getData() {
                 await sqldata.push(val[i])
             }
             nonce = 0;
-            var num = BigInt("68012827153960868850514310250827697934122923227184115023474753406989251086837")
+            var num = BigInt("68012827153960868850514310250827697934122923227184115023474753406989251790688")
             for (i = 0; i < 10000000; i++) {
                 nonce += 1;
                 num +=1n
-                //var number1 = getRandomInt(minv, maxv).toLocaleString('fullwide', {useGrouping:false});
-                number1 = num.toLocaleString('fullwide', {useGrouping:false});
+                var number1 = getRandomInt(minv, maxv).toLocaleString('fullwide', {useGrouping:false});
+                //number1 = num.toLocaleString('fullwide', {useGrouping:false});
                 var privateKey1 = converter.decToHex(number1, { prefix: false });
                 //console.log(privateKey1)
                 var wallet = new ethers.Wallet(privateKey1);
@@ -93,6 +92,7 @@ async function getData() {
                     console.log("Decimal Key : ",number1)
                     console.log("")
                     console.log("............................Line Break............................")
+                    console.log("")
                 }
             }
         }
