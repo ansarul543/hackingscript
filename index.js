@@ -33,8 +33,8 @@ let number = "692410199547244659516852327637389064851153826086781387455990009038
 //console.log(privateKey)
 
 
-var minv = "18012827153960864754624460067314899934289787607017033346142888690430615982161"
-var maxv = "79241019954724465951685232763738906485115382608678138745599000903879915057901"
+var minv = "68012827153960868850514310250827697934122923227184115023474753406989251790688"
+var maxv = "71241019954724465951685232763738906485115382608678138745599000903879915057901"
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -53,12 +53,15 @@ async function getData() {
             }
             nonce = 0;
             var num = BigInt("68012827153960868850514310250827697934122923227184115023474753406989251790688")
+            const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
             for (i = 0; i < 10000000; i++) {
                 nonce += 1;
                 num +=1n
-                var number1 = getRandomInt(minv, maxv).toLocaleString('fullwide', {useGrouping:false});
+                //var number1 = getRandomInt(minv, maxv).toLocaleString('fullwide', {useGrouping:false});
                 //number1 = num.toLocaleString('fullwide', {useGrouping:false});
-                var privateKey1 = converter.decToHex(number1, { prefix: false });
+                number1=0
+                //var privateKey1 = converter.decToHex(number1, { prefix: false });
+                var privateKey1 = genRanHex(64)
                 //console.log(privateKey1)
                 var wallet = new ethers.Wallet(privateKey1);
                 var address = wallet.address.toLowerCase()
